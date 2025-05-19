@@ -289,8 +289,9 @@ MonoBehaviour:
   baseHealth: 100
   baseStamina: 100
   staminaRecovery: 5
+  isRun: 0
   baseSpeed: 5
-  runSpeed: 8
+  runSpeed: 10
   runStamina: 5
   baseJumpPower: 80
   jumpStamina: 15

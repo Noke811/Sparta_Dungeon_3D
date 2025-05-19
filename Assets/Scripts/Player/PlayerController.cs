@@ -95,10 +95,24 @@ public class PlayerController : MonoBehaviour
         playerInfo.Damage(10f);
     }
 
-    // 카메라 이동(마우스 delta)
+    // 카메라 이동(마우스 Delta)
     void OnLook(InputValue value)
     {
         mouseDelta = value.Get<Vector2>();
+    }
+
+    // 달리기 상태(Shift)
+    void OnRun()
+    {
+        if (!playerInfo.isRun)
+        {
+            playerInfo.SetSpeedRun();
+        }
+        else
+        {
+            playerInfo.SetSpeedOrigin();
+        }
+        playerInfo.isRun = !playerInfo.isRun;
     }
     #endregion
 }

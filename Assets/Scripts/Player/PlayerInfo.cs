@@ -14,6 +14,7 @@ public class PlayerInfo : MonoBehaviour
     [SerializeField] float staminaRecovery;
     private float stamina;
     public float Stamina => stamina;
+    public bool isRun = false;
 
     [Header("Speed")]
     [SerializeField] float baseSpeed;
@@ -38,7 +39,14 @@ public class PlayerInfo : MonoBehaviour
 
     private void Update()
     {
-        Rest(staminaRecovery * Time.deltaTime);
+        if (!isRun)
+        {
+            Rest(staminaRecovery * Time.deltaTime);
+        }
+        else
+        {
+            Run(runStamina * Time.deltaTime);
+        }
     }
 
     #region HP
@@ -84,6 +92,18 @@ public class PlayerInfo : MonoBehaviour
         stamina += amount;
     }
 
+    public void Run(float amount)
+    {
+        if (stamina - amount < 0)
+        {
+            stamina = 0;
+            isRun = false;
+            return;
+        }
+
+        stamina -= amount;
+    }
+
     public bool CanJump()
     {
         if(stamina < jumpStamina)
@@ -92,17 +112,6 @@ public class PlayerInfo : MonoBehaviour
         }
 
         stamina -= jumpStamina;
-        return true;
-    }
-
-    public bool CanRun()
-    {
-        if (stamina < runStamina)
-        {
-            return false;
-        }
-
-        stamina -= runStamina;
         return true;
     }
     #endregion
