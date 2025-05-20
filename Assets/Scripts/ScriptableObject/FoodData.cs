@@ -8,12 +8,12 @@ public enum StatType
     JumpPower,
 }
 
-[CreateAssetMenu(fileName = "Item", menuName = "New Item")]
-public class ItemData : ScriptableObject
+[CreateAssetMenu(fileName = "Food", menuName = "New Food")]
+public class FoodData : ScriptableObject
 {
     [Header("Info")]
-    [SerializeField] string itemName;
-    public string ItemName => itemName;
+    [SerializeField] string foodName;
+    public string FoodName => foodName;
     [SerializeField] string description;
     public string Description => description;
     [SerializeField] GameObject dropPrefab;

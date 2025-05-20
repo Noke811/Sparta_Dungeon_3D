@@ -5,17 +5,19 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] BarHandler hpBar;
     [SerializeField] BarHandler staminaBar;
-    [SerializeField] ItemInfoUI itemInfoUI;
-    public ItemInfoUI ItemInfo => itemInfoUI;
+    [SerializeField] FoodInfo itemInfoUI;
+    public FoodInfo ItemInfo => itemInfoUI;
+
+    PlayerInfo playerInfo;
+
+    private void Start()
+    {
+        playerInfo = GameManager.Instance.PlayerInfo;
+    }
 
     private void Update()
     {
-        float curHP = GameManager.Instance.PlayerInfo.Health;
-        float maxHP = GameManager.Instance.PlayerInfo.MaxHealth;
-        float curStamina = GameManager.Instance.PlayerInfo.Stamina;
-        float maxStamina = GameManager.Instance.PlayerInfo.MaxStamina;
-
-        hpBar.UpdateBar(curHP, maxHP);
-        staminaBar.UpdateBar(curStamina, maxStamina);
+        hpBar.UpdateBar(playerInfo.Health, playerInfo.MaxHealth);
+        staminaBar.UpdateBar(playerInfo.Stamina, playerInfo.MaxStamina);
     }
 }

@@ -15,10 +15,12 @@ public class PlayerController : MonoBehaviour
     float camCurXRot;
 
     Rigidbody rigid;
+    PlayerInfo playerInfo;
 
     private void Awake()
     {
         rigid = GetComponent<Rigidbody>();
+        playerInfo = GetComponent<PlayerInfo>();
     }
 
     private void FixedUpdate()
@@ -35,7 +37,7 @@ public class PlayerController : MonoBehaviour
     void Move()
     {
         Vector3 dir = transform.forward * moveDir.y + transform.right * moveDir.x;
-        dir *= GameManager.Instance.PlayerInfo.Speed;
+        dir *= playerInfo.Speed;
         dir.y = rigid.velocity.y;
 
         rigid.velocity = dir;
@@ -85,16 +87,9 @@ public class PlayerController : MonoBehaviour
     {
         if (IsGrounded())
         {
-            if(GameManager.Instance.PlayerInfo.CanJump())
-                rigid.AddForce(Vector2.up * GameManager.Instance.PlayerInfo.JumpPower, ForceMode.Impulse);
+            if(playerInfo.CanJump())
+                rigid.AddForce(Vector2.up * playerInfo.JumpPower, ForceMode.Impulse);
         }
-    }
-
-    // 아이템 사용(F)
-    void OnUse()
-    {
-        // 테스트용
-        GameManager.Instance.PlayerInfo.Damage(10f);
     }
 
     // 카메라 이동(마우스 Delta)
@@ -108,8 +103,7 @@ public class PlayerController : MonoBehaviour
     {
         if (IsGrounded())
         {
-            GameManager.Instance.PlayerInfo.ChangePlayerState();
-
+            playerInfo.ChangePlayerState();
         }
     }
     #endregion

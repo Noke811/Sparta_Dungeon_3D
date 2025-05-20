@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8640160535220942076}
+  - component: {fileID: -4460444079655978572}
   m_Layer: 9
   m_Name: Inventory_Burger
   m_TagString: Untagged
@@ -32,6 +33,19 @@ Transform:
   - {fileID: 8964442847923475619}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-4460444079655978572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 82167200408515695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 415756412a470654c8277d288a67bd36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foodData: {fileID: 11400000, guid: a37e34326c9511840ac3cff78c0a8cf4, type: 2}
 --- !u!1 &3375991776511135194
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f88867790f76f64d823ad866677d9da, type: 3}
   m_Name: Mushroom
   m_EditorClassIdentifier: 
-  itemName: "\uBC84\uC12F"
+  foodName: "\uBC84\uC12F"
   description: "5\uCD08 \uB3D9\uC548 \uC810\uD504\uB825 2\uBC30"
   dropPrefab: {fileID: 270153010765816911, guid: a1dba5980e5068445bea5e56393f082f, type: 3}
   inventoryPrefab: {fileID: 2474438071935472919, guid: c7f92a504ad864b478b2d8885d15d2a9, type: 3}

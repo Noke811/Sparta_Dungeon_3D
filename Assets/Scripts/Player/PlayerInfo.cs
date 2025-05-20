@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public enum PlayerState
@@ -154,15 +155,16 @@ public class PlayerInfo : MonoBehaviour
 
     #region Speed
     // 스피드 아이템 적용
-    public void SetSpeed(float multiplier)
+    public IEnumerator SpeedBuff(float multiplier, float duration)
     {
         speedMultiplier = multiplier;
-    }
+        Debug.Log(speedMultiplier);
+        Debug.Log(duration);
 
-    // 스피드 아이템 적용 풀림
-    public void SetSpeed()
-    {
+        yield return new WaitForSeconds(duration);
+
         speedMultiplier = 1f;
+        Debug.Log(speedMultiplier);
     }
 
     // 걷기 속도로 변경
@@ -180,15 +182,16 @@ public class PlayerInfo : MonoBehaviour
 
     #region Jump
     // 점프 아이템 적용
-    public void SetJumpPower(float multiplier)
+    public IEnumerator JumpBuff(float multiplier, float duration)
     {
         jumpMultiplier = multiplier;
-    }
+        Debug.Log(jumpMultiplier);
+        Debug.Log(duration);
 
-    // 점프 아이템 적용 풀림
-    public void SetJumpPower()
-    {
+        yield return new WaitForSeconds(duration);
+
         jumpMultiplier = 1f;
+        Debug.Log(jumpMultiplier);
     }
     #endregion
 }

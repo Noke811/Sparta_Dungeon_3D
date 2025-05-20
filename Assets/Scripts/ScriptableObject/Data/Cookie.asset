@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f88867790f76f64d823ad866677d9da, type: 3}
   m_Name: Cookie
   m_EditorClassIdentifier: 
-  itemName: "\uCFE0\uD0A4"
+  foodName: "\uCFE0\uD0A4"
   description: "\uCCB4\uB825 30 \uD68C\uBCF5"
   dropPrefab: {fileID: 5717368543455101123, guid: b97cf5585ad187a4da8d8534d53d5ea7, type: 3}
   inventoryPrefab: {fileID: 4586717898204349014, guid: 9e48630d80b467146ac9858c630acccf, type: 3}

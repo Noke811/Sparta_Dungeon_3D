@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f88867790f76f64d823ad866677d9da, type: 3}
   m_Name: Burger
   m_EditorClassIdentifier: 
-  itemName: "\uD584\uBC84\uAC70"
+  foodName: "\uD584\uBC84\uAC70"
   description: "\uCCB4\uB825 50 \uD68C\uBCF5"
   dropPrefab: {fileID: 4358967218700652596, guid: b7609564a81dfa048896dc4408aaac27, type: 3}
   inventoryPrefab: {fileID: 82167200408515695, guid: 264365f034fd6a1459ba12e404d653e3, type: 3}

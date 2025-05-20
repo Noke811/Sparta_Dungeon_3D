@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 4900395812828451645}
   - component: {fileID: 3091722582736221136}
   m_Layer: 8
-  m_Name: Item_Cupcake
+  m_Name: Food_Cupcake
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,7 +111,7 @@ Transform:
   m_GameObject: {fileID: 3377393386229023601}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.5, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -178,4 +178,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 415756412a470654c8277d288a67bd36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemData: {fileID: 11400000, guid: a0d3b68ec2c66de44927bfe7f4e92f48, type: 2}
+  foodData: {fileID: 11400000, guid: a0d3b68ec2c66de44927bfe7f4e92f48, type: 2}

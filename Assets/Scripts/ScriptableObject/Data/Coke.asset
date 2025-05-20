@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f88867790f76f64d823ad866677d9da, type: 3}
   m_Name: Coke
   m_EditorClassIdentifier: 
-  itemName: "\uCF5C\uB77C"
+  foodName: "\uCF5C\uB77C"
   description: "\uC2A4\uD0DC\uBBF8\uB098 \uC644\uC804 \uD68C\uBCF5"
   dropPrefab: {fileID: 367939287724362136, guid: 1d31163d08f4b93438b8ceac20f84f80, type: 3}
   inventoryPrefab: {fileID: 948737170060919980, guid: 49d659848e265c4429b16f074db179fa, type: 3}
