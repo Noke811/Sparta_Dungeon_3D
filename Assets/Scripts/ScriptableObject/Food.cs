@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class Food : MonoBehaviour
@@ -22,11 +21,11 @@ public class Food : MonoBehaviour
                 break;
 
             case StatType.Speed:
-                StartCoroutine(playerInfo.SpeedBuff(foodData.StatValue, foodData.Duration));
+                playerInfo.SpeedBuff(foodData.StatValue, foodData.Duration);
                 break;
 
             case StatType.JumpPower:
-                StartCoroutine(playerInfo.JumpBuff(foodData.StatValue, foodData.Duration));
+                playerInfo.JumpBuff(foodData.StatValue, foodData.Duration);
                 break;
         }
     }

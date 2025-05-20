@@ -36,22 +36,24 @@ public class ItemDetector : MonoBehaviour
     // 상호작용(F)
     public void OnInteraction()
     {
+        // 감지된 외부 음식 존재 시
         if(externalFood != null)
         {
-            // 인벤토리에 음식이 있다면, 바깥에 생성
+            // 인벤토리에 음식이 있다면, 바깥에 생성 (외부 음식과 교체 과정)
             if(inventoryFood != null)
             {
                 Instantiate(inventoryFood.FoodData.DropPrefab, cameraContainer.transform.position + transform.forward, Quaternion.identity);
                 Destroy(inventoryFood.gameObject);
             }
 
-            // 인벤토리에 음식 오브젝트 생성
+            // 인벤토리에 감지된 외부 음식 오브젝트 생성
             inventoryFood = Instantiate(externalFood.FoodData.InventoryPrefab, cameraContainer.transform).GetComponent<Food>();
             Destroy(externalFood.gameObject);
             externalFood = null;
         }
         else
         {
+            // 감지된 외부 음식이 없고 인벤토리에 음식이 있다면, 음식을 먹어 효과 적용
             if (inventoryFood != null)
             {
                 inventoryFood.Eat(GameManager.Instance.PlayerInfo);

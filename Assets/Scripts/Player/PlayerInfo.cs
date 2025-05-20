@@ -155,16 +155,17 @@ public class PlayerInfo : MonoBehaviour
 
     #region Speed
     // 스피드 아이템 적용
-    public IEnumerator SpeedBuff(float multiplier, float duration)
+    public void SpeedBuff(float multiplier, float duration)
+    {
+        StartCoroutine(CoSpeedBuff(multiplier, duration));
+    }
+    private IEnumerator CoSpeedBuff(float multiplier, float duration)
     {
         speedMultiplier = multiplier;
-        Debug.Log(speedMultiplier);
-        Debug.Log(duration);
 
         yield return new WaitForSeconds(duration);
 
         speedMultiplier = 1f;
-        Debug.Log(speedMultiplier);
     }
 
     // 걷기 속도로 변경
@@ -182,16 +183,17 @@ public class PlayerInfo : MonoBehaviour
 
     #region Jump
     // 점프 아이템 적용
-    public IEnumerator JumpBuff(float multiplier, float duration)
+    public void JumpBuff(float multiplier, float duration)
+    {
+        StartCoroutine(CoJumpBuff(multiplier, duration));
+    }
+    private IEnumerator CoJumpBuff(float multiplier, float duration)
     {
         jumpMultiplier = multiplier;
-        Debug.Log(jumpMultiplier);
-        Debug.Log(duration);
 
         yield return new WaitForSeconds(duration);
 
         jumpMultiplier = 1f;
-        Debug.Log(jumpMultiplier);
     }
     #endregion
 }
