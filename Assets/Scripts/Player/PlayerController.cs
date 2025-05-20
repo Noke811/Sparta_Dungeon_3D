@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour
         if (IsGrounded())
         {
             if(playerInfo.CanJump())
-                rigid.AddForce(Vector2.up * playerInfo.JumpPower, ForceMode.Impulse);
+                rigid.AddForce(Vector3.up * playerInfo.JumpPower, ForceMode.Impulse);
         }
     }
 

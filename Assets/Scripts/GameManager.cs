@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] UIManager uiManager;
     public UIManager UIManager => uiManager;
 
+    public string PlayerTag => "Player";
+
     private void Awake()
     {
         if(instance == null)
