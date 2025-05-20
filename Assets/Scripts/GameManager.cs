@@ -5,6 +5,11 @@ public class GameManager : MonoBehaviour
     private static GameManager instance;
     public static GameManager Instance => instance;
 
+    [SerializeField] PlayerInfo playerInfo;
+    public PlayerInfo PlayerInfo => playerInfo;
+    [SerializeField] UIManager uiManager;
+    public UIManager UIManager => uiManager;
+
     private void Awake()
     {
         if(instance == null)

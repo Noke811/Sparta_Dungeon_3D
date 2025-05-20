@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f88867790f76f64d823ad866677d9da, type: 3}
+  m_Name: Mushroom
+  m_EditorClassIdentifier: 
+  itemName: "\uBC84\uC12F"
+  description: "5\uCD08 \uB3D9\uC548 \uC810\uD504\uB825 2\uBC30"
+  dropPrefab: {fileID: 270153010765816911, guid: a1dba5980e5068445bea5e56393f082f, type: 3}
+  inventoryPrefab: {fileID: 2474438071935472919, guid: c7f92a504ad864b478b2d8885d15d2a9, type: 3}
+  statType: 3
+  statValue: 2
+  hasDuration: 1
+  duration: 5

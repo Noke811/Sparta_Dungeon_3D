@@ -1,14 +1,21 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
     [SerializeField] BarHandler hpBar;
     [SerializeField] BarHandler staminaBar;
-    [SerializeField] PlayerInfo playerInfo;
+    [SerializeField] ItemInfoUI itemInfoUI;
+    public ItemInfoUI ItemInfo => itemInfoUI;
 
     private void Update()
     {
-        hpBar.UpdateBar(playerInfo.Health, playerInfo.MaxHealth);
-        staminaBar.UpdateBar(playerInfo.Stamina, playerInfo.MaxStamina);
+        float curHP = GameManager.Instance.PlayerInfo.Health;
+        float maxHP = GameManager.Instance.PlayerInfo.MaxHealth;
+        float curStamina = GameManager.Instance.PlayerInfo.Stamina;
+        float maxStamina = GameManager.Instance.PlayerInfo.MaxStamina;
+
+        hpBar.UpdateBar(curHP, maxHP);
+        staminaBar.UpdateBar(curStamina, maxStamina);
     }
 }

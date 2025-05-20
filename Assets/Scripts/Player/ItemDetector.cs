@@ -12,7 +12,13 @@ public class ItemDetector : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(ray, out hit, distanceRange, layerMask))
         {
-            Debug.Log($"{hit.transform.gameObject.name}");
+            ItemObject item = hit.transform.GetComponent<ItemObject>();
+
+            GameManager.Instance.UIManager.ItemInfo.ShowItemInfo(item.GetItemName(), item.GetItemDesc());
+        }
+        else
+        {
+            GameManager.Instance.UIManager.ItemInfo.HideItemInfo();
         }
     }
 }
