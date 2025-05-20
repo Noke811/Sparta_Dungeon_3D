@@ -1,5 +1,11 @@
 using UnityEngine;
 
+public enum PlayerState
+{
+    Walk,
+    Run,
+}
+
 public class PlayerInfo : MonoBehaviour
 {
     [Header("Health")]
@@ -14,20 +20,23 @@ public class PlayerInfo : MonoBehaviour
     [SerializeField] float staminaRecovery;
     private float stamina;
     public float Stamina => stamina;
-    public bool isRun = false;
 
     [Header("Speed")]
     [SerializeField] float baseSpeed;
     [SerializeField] float runSpeed;
     [SerializeField] float runStamina;
     private float speed;
-    public float Speed => speed;
+    private float speedMultiplier = 1f;
+    public float Speed => speed * speedMultiplier;
 
     [Header("Jump")]
     [SerializeField] float baseJumpPower;
     [SerializeField] float jumpStamina;
     private float jumpPower;
-    public float JumpPower => jumpPower;
+    private float jumpMultiplier = 1f;
+    public float JumpPower => jumpPower * jumpMultiplier;
+
+    private PlayerState state;
 
     private void Awake()
     {
@@ -35,21 +44,43 @@ public class PlayerInfo : MonoBehaviour
         stamina = baseStamina;
         speed = baseSpeed;
         jumpPower = baseJumpPower;
+
+        state = PlayerState.Walk;
     }
 
     private void Update()
     {
-        if (!isRun)
+        switch (state)
         {
-            Rest(staminaRecovery * Time.deltaTime);
+            case PlayerState.Walk:
+                Rest(staminaRecovery * Time.deltaTime);
+                break;
+
+            case PlayerState.Run:
+                Run(runStamina * Time.deltaTime);
+                break;
         }
-        else
+    }
+
+    // 플레이어 걷기/달리기 상태 변경
+    public void ChangePlayerState()
+    {
+        switch (state)
         {
-            Run(runStamina * Time.deltaTime);
+            case PlayerState.Walk:
+                state = PlayerState.Run;
+                SetRunSpeed();
+                break;
+
+            case PlayerState.Run:
+                state = PlayerState.Walk;
+                SetWalkSpeed();
+                break;
         }
     }
 
     #region HP
+    // HP 회복
     public void Heal(float amount)
     {
         if(health + amount > baseHealth)
@@ -61,6 +92,7 @@ public class PlayerInfo : MonoBehaviour
         health += amount;
     }
 
+    // HP 데미지
     public void Damage(float amount)
     {
         if (health - amount < 0)
@@ -73,6 +105,7 @@ public class PlayerInfo : MonoBehaviour
         health -= amount;
     }
 
+    // 플레이어 사망
     private void Die()
     {
         GameManager.Instance.GameOver();
@@ -81,6 +114,7 @@ public class PlayerInfo : MonoBehaviour
     #endregion
 
     #region Stamina
+    // 걷기 상태일 때 스테미나 회복
     public void Rest(float amount)
     {
         if (stamina + amount > baseStamina)
@@ -92,18 +126,20 @@ public class PlayerInfo : MonoBehaviour
         stamina += amount;
     }
 
+    // 달리기 상태일 때 스테미나 소비
     public void Run(float amount)
     {
         if (stamina - amount < 0)
         {
             stamina = 0;
-            isRun = false;
+            ChangePlayerState();
             return;
         }
 
         stamina -= amount;
     }
 
+    // 점프할 수 있는 지 검사
     public bool CanJump()
     {
         if(stamina < jumpStamina)
@@ -117,31 +153,42 @@ public class PlayerInfo : MonoBehaviour
     #endregion
 
     #region Speed
+    // 스피드 아이템 적용
     public void SetSpeed(float multiplier)
     {
-        speed *= multiplier;
+        speedMultiplier = multiplier;
     }
 
-    public void SetSpeedOrigin()
+    // 스피드 아이템 적용 풀림
+    public void SetSpeed()
+    {
+        speedMultiplier = 1f;
+    }
+
+    // 걷기 속도로 변경
+    private void SetWalkSpeed()
     {
         speed = baseSpeed;
     }
 
-    public void SetSpeedRun()
+    // 달리기 속도로 변경
+    private void SetRunSpeed()
     {
         speed = runSpeed;
     }
     #endregion
 
     #region Jump
+    // 점프 아이템 적용
     public void SetJumpPower(float multiplier)
     {
-        jumpPower *= multiplier;
+        jumpMultiplier = multiplier;
     }
 
-    public void SetJumpPowerOrigin()
+    // 점프 아이템 적용 풀림
+    public void SetJumpPower()
     {
-        jumpPower = baseJumpPower;
+        jumpMultiplier = 1f;
     }
     #endregion
 }

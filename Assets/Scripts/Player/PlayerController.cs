@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
         UpdateLookDirection();
     }
 
+    // 플레이어 이동
     void Move()
     {
         Vector3 dir = transform.forward * moveDir.y + transform.right * moveDir.x;
@@ -42,6 +43,7 @@ public class PlayerController : MonoBehaviour
         rigid.velocity = dir;
     }
 
+    // 플레이어 1인칭 카메라 이동
     void UpdateLookDirection()
     {
         camCurXRot += mouseDelta.y * sensitivity;
@@ -51,6 +53,7 @@ public class PlayerController : MonoBehaviour
         transform.eulerAngles += new Vector3(0, mouseDelta.x * sensitivity, 0);
     }
 
+    // 땅에 닿아있는지 검사
     bool IsGrounded()
     {
         Ray[] rays = new Ray[4]
@@ -92,6 +95,7 @@ public class PlayerController : MonoBehaviour
     // 아이템 사용(F)
     void OnUse()
     {
+        // 테스트용
         playerInfo.Damage(10f);
     }
 
@@ -104,15 +108,11 @@ public class PlayerController : MonoBehaviour
     // 달리기 상태(Shift)
     void OnRun()
     {
-        if (!playerInfo.isRun)
+        if (IsGrounded())
         {
-            playerInfo.SetSpeedRun();
+            playerInfo.ChangePlayerState();
+
         }
-        else
-        {
-            playerInfo.SetSpeedOrigin();
-        }
-        playerInfo.isRun = !playerInfo.isRun;
     }
     #endregion
 }
