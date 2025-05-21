@@ -34,7 +34,7 @@ public class ItemDetector : MonoBehaviour
 
     #region InputSystem
     // 상호작용(F)
-    public void OnInteraction()
+    void OnInteraction()
     {
         // 감지된 외부 음식 존재 시
         if(externalFood != null)

@@ -1,14 +1,27 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+public enum CamState
+{
+    FirstPerson,
+    ThirdPerson_Back,
+    ThirdPerson_Front,
+}
+
 public class PlayerController : MonoBehaviour
 {
+    const int CAM_STATE_CNT = 3;
+
     [Header("Move")]
     [SerializeField] LayerMask groundLayerMask;
     Vector2 moveDir;
 
     [Header("Look")]
     [SerializeField] Transform camContainer;
+    [SerializeField] Transform cam_Back;
+    [SerializeField] Transform cam_Front;
+    Transform camTransform;
+    CamState camState;
     [SerializeField] float lookRange;
     [SerializeField] float sensitivity;
     Vector2 mouseDelta;
@@ -21,6 +34,12 @@ public class PlayerController : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody>();
         playerInfo = GetComponent<PlayerInfo>();
+    }
+
+    private void Start()
+    {
+        camTransform = Camera.main.transform;
+        camState = CamState.FirstPerson;
     }
 
     private void FixedUpdate()
@@ -43,7 +62,7 @@ public class PlayerController : MonoBehaviour
         rigid.velocity = dir;
     }
 
-    // 플레이어 1인칭 카메라 이동
+    // 카메라 이동
     void UpdateLookDirection()
     {
         camCurXRot += mouseDelta.y * sensitivity;
@@ -73,6 +92,30 @@ public class PlayerController : MonoBehaviour
         }
 
         return false;
+    }
+
+    // 카메라의 상태(1인칭 / 3인칭_뒤 / 3인칭_앞)를 변경
+    void ChangeCameraState()
+    {
+        camState = (CamState)(((int)camState + 1) % CAM_STATE_CNT);
+
+        switch (camState)
+        {
+            case CamState.FirstPerson:
+                camTransform.SetParent(camContainer);
+                break;
+
+            case CamState.ThirdPerson_Back:
+                camTransform.SetParent(cam_Back);
+                break;
+
+            case CamState.ThirdPerson_Front:
+                camTransform.SetParent(cam_Front);
+                break;
+        }
+        camTransform.localPosition = Vector3.zero;
+        camTransform.localRotation = Quaternion.identity;
+        camTransform.localScale = Vector3.one;
     }
 
     #region InputSystem
@@ -113,6 +156,12 @@ public class PlayerController : MonoBehaviour
         {
             playerInfo.ChangePlayerState();
         }
+    }
+
+    // 카메라 상태 변경(Z)
+    void OnCamChange()
+    {
+        ChangeCameraState();
     }
     #endregion
 }
