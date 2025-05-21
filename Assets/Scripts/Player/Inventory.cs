@@ -12,17 +12,25 @@ public class Inventory : MonoBehaviour
             TakeOutFood(dropPos);
         }
 
+        food.GetComponent<Rigidbody>().useGravity = false;
+        food.GetComponent<Collider>().enabled = false;
+
         food.transform.SetParent(pivot);
         food.transform.localPosition = Vector3.zero;
         food.transform.localRotation = Quaternion.identity;
+
         inventoryFood = food;
     }
 
-    public void TakeOutFood(Transform dropPos)
+    private void TakeOutFood(Transform dropPos)
     {
+        inventoryFood.GetComponent<Rigidbody>().useGravity = true;
+        inventoryFood.GetComponent<Collider>().enabled = true;
+
         inventoryFood.transform.SetParent(null);
         inventoryFood.transform.position = dropPos.position + dropPos.forward;
         inventoryFood.transform.localRotation = Quaternion.identity;
+
         inventoryFood = null;
     }
 
