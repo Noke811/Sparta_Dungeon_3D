@@ -13,6 +13,7 @@ public class Inventory : MonoBehaviour
         }
 
         food.GetComponent<Rigidbody>().useGravity = false;
+        food.GetComponent<Rigidbody>().velocity = Vector3.zero;
         food.GetComponent<Collider>().enabled = false;
 
         food.transform.SetParent(pivot);
