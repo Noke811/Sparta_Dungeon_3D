@@ -9,7 +9,6 @@ public class PlayerDetector : MonoBehaviour
     {
         if (collision.gameObject.CompareTag(GameManager.Instance.PlayerTag))
         {
-            Debug.Log("player in");
             player = collision.gameObject.GetComponent<Transform>();
         }
     }
@@ -18,7 +17,6 @@ public class PlayerDetector : MonoBehaviour
     {
         if (collision.gameObject.CompareTag(GameManager.Instance.PlayerTag))
         {
-            Debug.Log("player out");
             player = null;
         }
     }
