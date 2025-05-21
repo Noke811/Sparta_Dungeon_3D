@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f88867790f76f64d823ad866677d9da, type: 3}
+  m_Name: Coffee
+  m_EditorClassIdentifier: 
+  foodName: "\uCEE4\uD53C"
+  description: "\uB354\uBE14 \uC810\uD504 1\uD68C \uAC00\uB2A5"
+  dropPrefab: {fileID: 7765949235417288643, guid: c90ffb0091fad0b479c67ccf474b4fbd, type: 3}
+  inventoryPrefab: {fileID: 6602248387023195799, guid: 72e0140233ff6ae4eb6061b843258b48, type: 3}
+  statType: 4
+  statValue: 0
+  hasDuration: 0
+  duration: 0

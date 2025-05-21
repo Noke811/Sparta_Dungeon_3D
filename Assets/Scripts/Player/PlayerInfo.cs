@@ -36,6 +36,8 @@ public class PlayerInfo : MonoBehaviour
     private float jumpPower;
     private float jumpMultiplier = 1f;
     public float JumpPower => jumpPower * jumpMultiplier;
+    private bool isDoubleJump;
+    public bool IsDoubleJump => isDoubleJump;
 
     private PlayerState state;
 
@@ -194,6 +196,16 @@ public class PlayerInfo : MonoBehaviour
         yield return new WaitForSeconds(duration);
 
         jumpMultiplier = 1f;
+    }
+
+    public void SetDoubleJump()
+    {
+        isDoubleJump = true;
+    }
+
+    public void DoubleJumpDone()
+    {
+        isDoubleJump = false;
     }
     #endregion
 }

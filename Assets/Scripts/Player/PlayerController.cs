@@ -90,6 +90,14 @@ public class PlayerController : MonoBehaviour
             if(playerInfo.CanJump())
                 rigid.AddForce(Vector3.up * playerInfo.JumpPower, ForceMode.Impulse);
         }
+        else
+        {
+            if (playerInfo.IsDoubleJump)
+            {
+                playerInfo.DoubleJumpDone();
+                rigid.AddForce(Vector3.up * playerInfo.JumpPower, ForceMode.Impulse);
+            }
+        }
     }
 
     // 카메라 이동(마우스 Delta)

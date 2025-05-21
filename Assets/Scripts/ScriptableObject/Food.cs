@@ -27,6 +27,10 @@ public class Food : MonoBehaviour
             case StatType.JumpPower:
                 playerInfo.JumpBuff(foodData.StatValue, foodData.Duration);
                 break;
+
+            case StatType.DoubleJump:
+                playerInfo.SetDoubleJump();
+                break;
         }
     }
 }

@@ -6,6 +6,7 @@ public enum StatType
     Stamina,
     Speed,
     JumpPower,
+    DoubleJump,
 }
 
 [CreateAssetMenu(fileName = "Food", menuName = "New Food")]
