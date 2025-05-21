@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Move")]
     [SerializeField] LayerMask groundLayerMask;
+    [SerializeField] bool godMode;
     Vector2 moveDir;
 
     [Header("Look")]
@@ -40,6 +41,14 @@ public class PlayerController : MonoBehaviour
     {
         camTransform = Camera.main.transform;
         camState = CamState.FirstPerson;
+    }
+
+    private void Update()
+    {
+        if(transform.position.y < -20f)
+        {
+            playerInfo.Damage(40f * Time.deltaTime);
+        }
     }
 
     private void FixedUpdate()
@@ -135,7 +144,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if (playerInfo.IsDoubleJump)
+            if (playerInfo.IsDoubleJump || godMode)
             {
                 playerInfo.DoubleJumpDone();
                 rigid.AddForce(Vector3.up * playerInfo.JumpPower, ForceMode.Impulse);
