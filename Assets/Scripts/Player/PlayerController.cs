@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform camContainer;
     [SerializeField] Transform cam_Back;
     [SerializeField] Transform cam_Front;
+    [SerializeField] LayerMask faceLayer;
     Transform camTransform;
     CamState camState;
     [SerializeField] float lookRange;
@@ -111,11 +112,13 @@ public class PlayerController : MonoBehaviour
         switch (camState)
         {
             case CamState.FirstPerson:
+                Camera.main.cullingMask &= ~faceLayer.value;
                 camTransform.SetParent(camContainer);
                 break;
 
             case CamState.ThirdPerson_Back:
                 camTransform.SetParent(cam_Back);
+                Camera.main.cullingMask |= faceLayer.value;
                 break;
 
             case CamState.ThirdPerson_Front:

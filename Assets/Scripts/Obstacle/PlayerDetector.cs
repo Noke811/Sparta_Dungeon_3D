@@ -9,6 +9,7 @@ public class PlayerDetector : MonoBehaviour
     {
         if (other.CompareTag(GameManager.Instance.PlayerTag))
         {
+            Debug.Log("In");
             player = other.GetComponent<Transform>();
         }
     }
@@ -17,6 +18,7 @@ public class PlayerDetector : MonoBehaviour
     {
         if (other.CompareTag(GameManager.Instance.PlayerTag))
         {
+            Debug.Log("Out");
             player = null;
         }
     }
