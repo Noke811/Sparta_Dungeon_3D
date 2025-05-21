@@ -41,8 +41,7 @@ public class FoodDetector : MonoBehaviour
     {
         if(externalFood != null)
         {
-            inventory.SaveFood(externalFood.FoodData, cameraContainer);
-            Destroy(externalFood.gameObject);
+            inventory.SaveFood(externalFood, cameraContainer);
             externalFood = null;
         }
         else

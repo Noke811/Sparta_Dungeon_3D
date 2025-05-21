@@ -5,20 +5,24 @@ public class Inventory : MonoBehaviour
     [SerializeField] Transform pivot;
     Food inventoryFood = null;
 
-    public void SaveFood(FoodData foodData, Transform dropPos)
+    public void SaveFood(Food food, Transform dropPos)
     {
         if(inventoryFood != null)
         {
             TakeOutFood(dropPos);
         }
 
-        inventoryFood = Instantiate(foodData.DropPrefab, pivot).GetComponent<Food>();
+        food.transform.SetParent(pivot);
+        food.transform.localPosition = Vector3.zero;
+        food.transform.localRotation = Quaternion.identity;
+        inventoryFood = food;
     }
 
     public void TakeOutFood(Transform dropPos)
     {
-        Instantiate(inventoryFood.FoodData.DropPrefab, dropPos.position + transform.forward, Quaternion.identity);
-        Destroy(inventoryFood.gameObject);
+        inventoryFood.transform.SetParent(null);
+        inventoryFood.transform.position = dropPos.position + dropPos.forward;
+        inventoryFood.transform.localRotation = Quaternion.identity;
         inventoryFood = null;
     }
 
