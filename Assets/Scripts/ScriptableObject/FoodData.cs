@@ -19,8 +19,6 @@ public class FoodData : ScriptableObject
     public string Description => description;
     [SerializeField] GameObject dropPrefab;
     public GameObject DropPrefab => dropPrefab;
-    [SerializeField] GameObject inventoryPrefab;
-    public GameObject InventoryPrefab => inventoryPrefab;
 
     [Header("Effect")]
     [SerializeField] StatType statType;

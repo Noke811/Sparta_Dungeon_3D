@@ -1,12 +1,11 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
     [SerializeField] BarHandler hpBar;
     [SerializeField] BarHandler staminaBar;
-    [SerializeField] FoodInfo itemInfoUI;
-    public FoodInfo ItemInfo => itemInfoUI;
+    [SerializeField] FoodInfo foodInfo;
+    public FoodInfo FoodInfo => foodInfo;
 
     PlayerInfo playerInfo;
 

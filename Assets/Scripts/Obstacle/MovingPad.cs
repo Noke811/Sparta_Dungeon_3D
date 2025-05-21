@@ -13,7 +13,7 @@ public class MovingPad : MonoBehaviour
     private void Awake()
     {
         points = pointsObject.GetComponentsInChildren<Transform>();
-        playerDetector = movingPad.GetComponent<PlayerDetector>();
+        playerDetector = movingPad.GetComponentInChildren<PlayerDetector>();
     }
 
     private void Update()

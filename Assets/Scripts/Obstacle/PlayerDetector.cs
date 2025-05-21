@@ -5,17 +5,17 @@ public class PlayerDetector : MonoBehaviour
     private Transform player = null;
     public Transform Player => player;
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag(GameManager.Instance.PlayerTag))
+        if (other.CompareTag(GameManager.Instance.PlayerTag))
         {
-            player = collision.gameObject.GetComponent<Transform>();
+            player = other.GetComponent<Transform>();
         }
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerExit(Collider other)
     {
-        if (collision.gameObject.CompareTag(GameManager.Instance.PlayerTag))
+        if (other.CompareTag(GameManager.Instance.PlayerTag))
         {
             player = null;
         }

@@ -1,15 +1,15 @@
 using UnityEngine;
 
-public class JumpPad : MonoBehaviour
+public class ForcePad : MonoBehaviour
 {
-    [SerializeField] float jumpPower;
+    [SerializeField] float power;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             Rigidbody rigid = other.GetComponent<Rigidbody>();
-            rigid.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
+            rigid.AddForce(transform.up * power, ForceMode.Impulse);
         }
     }
 }
