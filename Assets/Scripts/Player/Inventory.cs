@@ -27,5 +27,7 @@ public class Inventory : MonoBehaviour
         if (inventoryFood == null) return;
 
         inventoryFood.Eat(GameManager.Instance.PlayerInfo);
+        Destroy(inventoryFood.gameObject);
+        inventoryFood = null;
     }
 }
