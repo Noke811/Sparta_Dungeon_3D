@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FoodDetector : MonoBehaviour
+public class InteractionDetector : MonoBehaviour
 {
     [Header("Inventory")]
     [SerializeField] Inventory inventory;

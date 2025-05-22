@@ -42,7 +42,8 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         camTransform = Camera.main.transform;
-        camState = CamState.FirstPerson;
+        camState = CamState.ThirdPerson_Front;
+        ChangeCameraState();
     }
 
     private void Update()
