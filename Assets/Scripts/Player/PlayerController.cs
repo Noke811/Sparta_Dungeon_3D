@@ -66,10 +66,9 @@ public class PlayerController : MonoBehaviour
     void Move()
     {
         Vector3 dir = transform.forward * moveDir.y + transform.right * moveDir.x;
-        dir *= playerInfo.Speed;
-        dir.y = rigid.velocity.y;
+        dir *= playerInfo.Speed * Time.fixedDeltaTime;
 
-        rigid.velocity = dir;
+        rigid.MovePosition(rigid.position + dir);
     }
 
     // 카메라 이동
