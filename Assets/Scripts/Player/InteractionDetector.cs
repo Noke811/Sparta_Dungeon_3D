@@ -9,6 +9,8 @@ public class InteractionDetector : MonoBehaviour
     [SerializeField] Transform cameraContainer;
     [SerializeField] float distanceRange;
     [SerializeField] LayerMask layerMask;
+    [SerializeField] Transform interactionPanel;
+    [SerializeField] float upFactor;
     FoodInfo foodInfo;
 
     Food externalFood = null;
@@ -16,6 +18,7 @@ public class InteractionDetector : MonoBehaviour
     private void Start()
     {
         foodInfo = GameManager.Instance.UIManager.FoodInfo;
+        interactionPanel.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -25,14 +28,27 @@ public class InteractionDetector : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(ray, out hit, distanceRange, layerMask))
         {
+            ShowInteractionKey(hit.transform);
+
             externalFood = hit.transform.GetComponent<Food>();
             foodInfo.ShowFoodInfo(externalFood.FoodData.FoodName, externalFood.FoodData.Description);
         }
         else
         {
+            interactionPanel.gameObject.SetActive(false);
+
             externalFood = null;
             foodInfo.HideFoodInfo();
         }
+    }
+
+    private void ShowInteractionKey(Transform obj)
+    {
+        Collider collider = obj.GetComponent<Collider>();
+
+        interactionPanel.position = collider.bounds.center + Vector3.up * collider.bounds.size.y;
+        interactionPanel.forward = interactionPanel.position - cameraContainer.position;
+        interactionPanel.gameObject.SetActive(true);
     }
 
     #region InputSystem
