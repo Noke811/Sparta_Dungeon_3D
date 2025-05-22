@@ -2,15 +2,14 @@ using UnityEngine;
 
 public class PlayerDetector : MonoBehaviour
 {
-    private Transform player = null;
-    public Transform Player => player;
+    private bool isIn = false;
+    public bool IsIn => isIn;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(GameManager.Instance.PlayerTag))
         {
-            Debug.Log("In");
-            player = other.GetComponent<Transform>();
+            isIn = true;
         }
     }
 
@@ -18,8 +17,7 @@ public class PlayerDetector : MonoBehaviour
     {
         if (other.CompareTag(GameManager.Instance.PlayerTag))
         {
-            Debug.Log("Out");
-            player = null;
+            isIn = false;
         }
     }
 }

@@ -6,14 +6,21 @@ public class MovingPad : MonoBehaviour
     PlayerDetector playerDetector;
     [SerializeField] GameObject pointsObject;
     Transform[] points;
+    int index = 1;
     [SerializeField] float speed;
     Vector3 moveDir;
-    int index = 1;
+
+    GameObject player;
 
     private void Awake()
     {
         points = pointsObject.GetComponentsInChildren<Transform>();
         playerDetector = movingPad.GetComponentInChildren<PlayerDetector>();
+    }
+
+    private void Start()
+    {
+        player = GameManager.Instance.PlayerInfo.gameObject;
     }
 
     private void Update()
@@ -24,7 +31,11 @@ public class MovingPad : MonoBehaviour
         }
 
         movingPad.position += speed * Time.deltaTime * moveDir;
-        if(playerDetector.Player != null) playerDetector.Player.position += speed * Time.deltaTime * moveDir;
+
+        if(playerDetector.IsIn)
+            player.transform.SetParent(transform);
+        else
+            player.transform.SetParent(null);
     }
 
     private bool IsArrived()

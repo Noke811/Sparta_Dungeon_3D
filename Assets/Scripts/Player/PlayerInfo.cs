@@ -65,7 +65,7 @@ public class PlayerInfo : MonoBehaviour
         }
     }
 
-    // 플레이어 걷기/달리기 상태 변경
+    // 플레이어 걷기/달리기 상태 변경 : 현재 상태에서 다음 상태로
     public void ChangePlayerState()
     {
         switch (state)
@@ -78,6 +78,23 @@ public class PlayerInfo : MonoBehaviour
             case PlayerState.Run:
                 state = PlayerState.Walk;
                 SetWalkSpeed();
+                break;
+        }
+    }
+
+    // 플레이어 걷기/달리기 상태 변경 : 원하는 상태로
+    public void ChangePlayerState(PlayerState _state)
+    {
+        switch (_state)
+        {
+            case PlayerState.Walk:
+                state = PlayerState.Walk;
+                SetWalkSpeed();
+                break;
+
+            case PlayerState.Run:
+                state = PlayerState.Run;
+                SetRunSpeed();
                 break;
         }
     }

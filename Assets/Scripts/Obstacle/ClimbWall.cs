@@ -5,26 +5,23 @@ public class ClimbWall : MonoBehaviour
     [SerializeField] Transform climbWall;
     PlayerDetector playerDetector;
 
-    Rigidbody playerRigid = null;
+    PlayerController controller;
 
     private void Awake()
     {
         playerDetector = climbWall.GetComponentInChildren<PlayerDetector>();
     }
 
-    private void FixedUpdate()
+    private void Start()
     {
-        if (playerDetector.Player != null)
-        {
-            playerRigid = playerDetector.Player.GetComponent<Rigidbody>();
-            playerRigid.useGravity = false;
-        }
+        controller = GameManager.Instance.PlayerInfo.GetComponent<PlayerController>();
+    }
+
+    private void Update()
+    {
+        if (playerDetector.IsIn)
+            controller.HangOnPlayer(true);
         else
-        {
-            if(playerRigid != null)
-            {
-                playerRigid.useGravity = true;
-            }
-        }
+            controller.HangOnPlayer(false);
     }
 }

@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] LayerMask groundLayerMask;
     [SerializeField] bool godMode;
     Vector2 moveDir;
+    bool isHangOn = false;
 
     [Header("Look")]
     [SerializeField] Transform camContainer;
@@ -54,7 +55,20 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Move();
+        // 갓 모드 활성화 : 유체화 상태
+        if (godMode)
+        {
+            HangOnPlayer(true);
+        }
+
+        if (!isHangOn)
+        {
+            Move();
+        }
+        else
+        {
+            ClimbUp();
+        }
     }
 
     private void LateUpdate()
@@ -66,6 +80,15 @@ public class PlayerController : MonoBehaviour
     void Move()
     {
         Vector3 dir = transform.forward * moveDir.y + transform.right * moveDir.x;
+        dir *= playerInfo.Speed * Time.fixedDeltaTime;
+
+        rigid.MovePosition(rigid.position + dir);
+    }
+
+    // 플레이어 벽 오르기
+    void ClimbUp()
+    {
+        Vector3 dir = camContainer.forward * moveDir.y + camContainer.right * moveDir.x;
         dir *= playerInfo.Speed * Time.fixedDeltaTime;
 
         rigid.MovePosition(rigid.position + dir);
@@ -129,6 +152,23 @@ public class PlayerController : MonoBehaviour
         camTransform.localScale = Vector3.one;
     }
 
+    public void HangOnPlayer(bool _isHangOn)
+    {
+        isHangOn = _isHangOn;
+
+        if (isHangOn)
+        {
+            rigid.velocity = Vector3.zero;
+            rigid.useGravity = false;
+
+            playerInfo.ChangePlayerState(PlayerState.Walk);
+        }
+        else
+        {
+            rigid.useGravity = true;
+        }
+    }
+
     #region InputSystem
     // 방향키(WASD, ↑←↓→)
     void OnMove(InputValue value)
@@ -146,7 +186,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if (playerInfo.IsDoubleJump || godMode)
+            if (playerInfo.IsDoubleJump)
             {
                 playerInfo.DoubleJumpDone();
                 rigid.AddForce(Vector3.up * playerInfo.JumpPower, ForceMode.Impulse);
