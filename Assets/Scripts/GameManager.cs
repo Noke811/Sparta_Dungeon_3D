@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] UIManager uiManager;
     public UIManager UIManager => uiManager;
 
-    public string PlayerTag => "Player";
+    public const int PLAYER_LAYER = 10;
 
     private void Awake()
     {

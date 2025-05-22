@@ -7,7 +7,7 @@ public class PlayerDetector : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(GameManager.Instance.PlayerTag))
+        if (other.gameObject.layer == GameManager.PLAYER_LAYER)
         {
             isIn = true;
         }
@@ -15,7 +15,7 @@ public class PlayerDetector : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag(GameManager.Instance.PlayerTag))
+        if (other.gameObject.layer == GameManager.PLAYER_LAYER)
         {
             isIn = false;
         }
