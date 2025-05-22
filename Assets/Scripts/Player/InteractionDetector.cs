@@ -45,8 +45,9 @@ public class InteractionDetector : MonoBehaviour
     private void ShowInteractionKey(Transform obj)
     {
         Collider collider = obj.GetComponent<Collider>();
+        Vector3 newPos = new Vector3(collider.bounds.center.x, collider.bounds.max.y, collider.bounds.center.z);
 
-        interactionPanel.position = collider.bounds.center + Vector3.up * collider.bounds.size.y;
+        interactionPanel.position = newPos + Vector3.up * upFactor;
         interactionPanel.forward = interactionPanel.position - cameraContainer.position;
         interactionPanel.gameObject.SetActive(true);
     }

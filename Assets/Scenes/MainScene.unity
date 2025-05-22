@@ -748,7 +748,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   interactionPanel: {fileID: 5210811651104983277}
-  upFactor: 1
+  upFactor: 0.12
 --- !u!1 &227646612
 GameObject:
   m_ObjectHideFlags: 0
