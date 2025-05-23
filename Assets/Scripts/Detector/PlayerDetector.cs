@@ -17,7 +17,7 @@ public class PlayerDetector : MonoBehaviour
         if (other.gameObject.layer == GameManager.PLAYER_LAYER)
         {
             isIn = true;
-            piston?.ChangeTargetPoint();
+            piston?.ChangeTargetPoint(PistonState.Pull);
         }
     }
 
@@ -26,7 +26,7 @@ public class PlayerDetector : MonoBehaviour
         if (other.gameObject.layer == GameManager.PLAYER_LAYER)
         {
             isIn = false;
-            piston?.ChangeTargetPoint();
+            piston?.ChangeTargetPoint(PistonState.Push);
         }
     }
 }

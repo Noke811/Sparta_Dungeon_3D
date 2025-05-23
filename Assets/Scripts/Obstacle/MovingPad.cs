@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MovingPad : MonoBehaviour
 {
-    protected const float REACH_THRESHOLD = 0.1f;
+    protected const float REACH_THRESHOLD = 0.05f;
 
     [Header("MovingPad")]
     [SerializeField] protected Transform movingPad;
@@ -51,7 +51,7 @@ public class MovingPad : MonoBehaviour
         return true;
     }
 
-    public void ChangeTargetPoint()
+    private void ChangeTargetPoint()
     {
         index = (index + 1) < points.Length ? index + 1 : 1;
         moveDir = (points[index].position - movingPad.position).normalized;

@@ -1,5 +1,11 @@
 using UnityEngine;
 
+public enum PistonState
+{
+    Push = 1,
+    Pull,
+}
+
 public class Piston : MovingPad
 {
     const float RECOVER_SPEED = 1f;
@@ -29,10 +35,11 @@ public class Piston : MovingPad
             {
                 if (excuted) 
                 {
+                    excuted = false;
                     player.AddForce(movingPad.up * power, ForceMode.Impulse);
                 }
-                ChangeTargetPoint();
-                excuted = !excuted;
+                ChangeTargetPoint(PistonState.Push);
+                excuted = true;
             }
         }
         else
@@ -50,5 +57,11 @@ public class Piston : MovingPad
 
         movingPad.position += speed * Time.fixedDeltaTime * moveDir;
         if(hasPlayer) player.MovePosition(player.position + speed * Time.fixedDeltaTime * moveDir);
+    }
+
+    public void ChangeTargetPoint(PistonState state)
+    {
+        index = (int)state;
+        moveDir = (points[index].position - movingPad.position).normalized;
     }
 }
