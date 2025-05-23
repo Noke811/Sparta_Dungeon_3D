@@ -2,29 +2,31 @@ using UnityEngine;
 
 public class MovingPad : MonoBehaviour
 {
-    [SerializeField] Transform movingPad;
-    PlayerDetector detector;
-    [SerializeField] GameObject pointsObject;
-    Transform[] points;
-    int index = 1;
-    [SerializeField] float speed;
-    float arrivalThreshold = 0.1f; 
-    Vector3 moveDir;
+    protected const float REACH_THRESHOLD = 0.1f;
 
-    Rigidbody player;
+    [Header("MovingPad")]
+    [SerializeField] protected Transform movingPad;
+    protected PlayerDetector detector;
+    [SerializeField] protected GameObject pointsObject;
+    protected Transform[] points;
+    protected int index = 1;
+    [SerializeField] private float speed;
+    protected Vector3 moveDir;
 
-    private void Awake()
+    protected Rigidbody player;
+
+    protected virtual void Awake()
     {
         points = pointsObject.GetComponentsInChildren<Transform>();
         detector = movingPad.GetComponentInChildren<PlayerDetector>();
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         player = GameManager.Instance.Player.GetComponent<Rigidbody>();
     }
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         if (IsArrived())
         {
@@ -37,10 +39,10 @@ public class MovingPad : MonoBehaviour
             player.MovePosition(player.position + speed * Time.fixedDeltaTime * moveDir);
     }
 
-    private bool IsArrived()
+    protected bool IsArrived()
     {
         float distance = Vector3.Distance(points[index].position, movingPad.position);
-        if (distance > arrivalThreshold)
+        if (distance > REACH_THRESHOLD)
         {
             return false;
         }
@@ -49,7 +51,7 @@ public class MovingPad : MonoBehaviour
         return true;
     }
 
-    private void ChangeTargetPoint()
+    public void ChangeTargetPoint()
     {
         index = (index + 1) < points.Length ? index + 1 : 1;
         moveDir = (points[index].position - movingPad.position).normalized;
