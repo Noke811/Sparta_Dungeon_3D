@@ -2,22 +2,20 @@ using UnityEngine;
 
 public class InteractionDetector : MonoBehaviour
 {
-    [Header("Inventory")]
-    [SerializeField] Inventory inventory;
-
     [Header("Detect")]
     [SerializeField] Transform cameraContainer;
     [SerializeField] float distanceRange;
     [SerializeField] LayerMask layerMask;
     [SerializeField] Transform interactionPanel;
     [SerializeField] float upFactor;
-    FoodInfo foodInfo;
 
+    Inventory inventory;
     Food externalFood = null;
+    public Food ExternalFood => externalFood;
 
     private void Start()
     {
-        foodInfo = GameManager.Instance.UIManager.FoodInfo;
+        inventory = GameManager.Instance.Inventory;
         interactionPanel.gameObject.SetActive(false);
     }
 
@@ -31,17 +29,16 @@ public class InteractionDetector : MonoBehaviour
             ShowInteractionKey(hit.transform);
 
             externalFood = hit.transform.GetComponent<Food>();
-            foodInfo.ShowFoodInfo(externalFood.FoodData.FoodName, externalFood.FoodData.Description);
         }
         else
         {
-            interactionPanel.gameObject.SetActive(false);
+            HideInteractionKey();
 
             externalFood = null;
-            foodInfo.HideFoodInfo();
         }
     }
 
+    // 해당 오브젝트 위에 상호작용 패널 띄우기
     private void ShowInteractionKey(Transform obj)
     {
         Collider collider = obj.GetComponent<Collider>();
@@ -50,6 +47,12 @@ public class InteractionDetector : MonoBehaviour
         interactionPanel.position = newPos + Vector3.up * upFactor;
         interactionPanel.forward = interactionPanel.position - cameraContainer.position;
         interactionPanel.gameObject.SetActive(true);
+    }
+
+    // 상호작용 패널 숨기기
+    private void HideInteractionKey()
+    {
+        interactionPanel.gameObject.SetActive(false);
     }
 
     #region InputSystem

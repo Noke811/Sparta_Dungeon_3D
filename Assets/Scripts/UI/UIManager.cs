@@ -4,8 +4,6 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] BarHandler hpBar;
     [SerializeField] BarHandler staminaBar;
-    [SerializeField] FoodInfo foodInfo;
-    public FoodInfo FoodInfo => foodInfo;
 
     PlayerInfo playerInfo;
 

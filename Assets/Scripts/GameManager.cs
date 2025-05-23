@@ -6,8 +6,12 @@ public class GameManager : MonoBehaviour
     private static GameManager instance;
     public static GameManager Instance => instance;
 
-    [SerializeField] PlayerInfo playerInfo;
-    public PlayerInfo PlayerInfo => playerInfo;
+    [SerializeField] GameObject player;
+    public GameObject Player => player;
+    public PlayerInfo PlayerInfo => player.GetComponent<PlayerInfo>();
+    public PlayerController PlayerController => player.GetComponent<PlayerController>();
+    [SerializeField] Inventory inventory;
+    public Inventory Inventory => inventory;
     [SerializeField] UIManager uiManager;
     public UIManager UIManager => uiManager;
 

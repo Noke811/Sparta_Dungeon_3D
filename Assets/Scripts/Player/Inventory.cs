@@ -4,7 +4,9 @@ public class Inventory : MonoBehaviour
 {
     [SerializeField] Transform pivot;
     Food inventoryFood = null;
+    public Food InventoryFood => inventoryFood;
 
+    // 인벤토리에 음식 저장
     public void SaveFood(Food food, Transform dropPos)
     {
         if(inventoryFood != null)
@@ -23,6 +25,7 @@ public class Inventory : MonoBehaviour
         inventoryFood = food;
     }
 
+    // 인벤토리에 음식이 있을 때 음식 바깥으로 반환
     private void TakeOutFood(Transform dropPos)
     {
         inventoryFood.GetComponent<Rigidbody>().useGravity = true;
@@ -35,6 +38,7 @@ public class Inventory : MonoBehaviour
         inventoryFood = null;
     }
 
+    // 인벤토리에 음식이 있을 때 음식 먹고 효과 적용
     public void EatFood()
     {
         if (inventoryFood == null) return;

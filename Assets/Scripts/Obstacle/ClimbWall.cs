@@ -14,7 +14,7 @@ public class ClimbWall : MonoBehaviour
 
     private void Start()
     {
-        controller = GameManager.Instance.PlayerInfo.GetComponent<PlayerController>();
+        controller = GameManager.Instance.PlayerController;
     }
 
     private void Update()

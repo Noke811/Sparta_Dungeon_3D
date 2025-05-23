@@ -21,7 +21,7 @@ public class MovingPad : MonoBehaviour
 
     private void Start()
     {
-        player = GameManager.Instance.PlayerInfo.GetComponent<Rigidbody>();
+        player = GameManager.Instance.Player.GetComponent<Rigidbody>();
     }
 
     private void FixedUpdate()
