@@ -1990,7 +1990,7 @@ MonoBehaviour:
   head: {fileID: 623413678}
   detector: {fileID: 1189499278}
   power: {fileID: 1955332069}
-  pushPower: 500
+  pushPower: 1000
 --- !u!1001 &609701153
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2164,7 +2164,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 623413672}
   serializedVersion: 4
-  m_Mass: 10
+  m_Mass: 20
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
