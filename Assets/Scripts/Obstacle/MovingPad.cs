@@ -28,6 +28,7 @@ public class MovingPad : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
+        // 타겟에 도착하면 다음 타겟으로 변경
         if (IsArrived())
         {
             ChangeTargetPoint();
@@ -35,10 +36,12 @@ public class MovingPad : MonoBehaviour
 
         movingPad.position += speed * Time.fixedDeltaTime * moveDir;
 
+        // 플레이어가 있을 때, 플레이어 움직임 처리
         if(detector.IsIn)
             player.MovePosition(player.position + speed * Time.fixedDeltaTime * moveDir);
     }
 
+    // 타겟 포인트에 도착했는지 확인
     protected bool IsArrived()
     {
         float distance = Vector3.Distance(points[index].position, movingPad.position);
@@ -51,6 +54,7 @@ public class MovingPad : MonoBehaviour
         return true;
     }
 
+    // 다음 타겟 포인트로 변경
     private void ChangeTargetPoint()
     {
         index = (index + 1) < points.Length ? index + 1 : 1;
