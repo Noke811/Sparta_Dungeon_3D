@@ -8,9 +8,10 @@ public class MovingPad : MonoBehaviour
     Transform[] points;
     int index = 1;
     [SerializeField] float speed;
+    float arrivalThreshold = 0.1f; 
     Vector3 moveDir;
 
-    GameObject player;
+    Rigidbody player;
 
     private void Awake()
     {
@@ -20,27 +21,26 @@ public class MovingPad : MonoBehaviour
 
     private void Start()
     {
-        player = GameManager.Instance.PlayerInfo.gameObject;
+        player = GameManager.Instance.PlayerInfo.GetComponent<Rigidbody>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (IsArrived())
         {
             ChangeTargetPoint();
         }
 
-        movingPad.position += speed * Time.deltaTime * moveDir;
+        movingPad.position += speed * Time.fixedDeltaTime * moveDir;
 
         if(playerDetector.IsIn)
-            player.transform.SetParent(transform);
-        else
-            player.transform.SetParent(null);
+            player.MovePosition(player.position + speed * Time.fixedDeltaTime * moveDir);
     }
 
     private bool IsArrived()
     {
-        if ((points[index].position - movingPad.position).magnitude > 0.01f)
+        float distance = Vector3.Distance(points[index].position, movingPad.position);
+        if (distance > arrivalThreshold)
         {
             return false;
         }
