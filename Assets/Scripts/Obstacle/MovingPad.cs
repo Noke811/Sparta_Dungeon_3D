@@ -3,7 +3,7 @@ using UnityEngine;
 public class MovingPad : MonoBehaviour
 {
     [SerializeField] Transform movingPad;
-    PlayerDetector playerDetector;
+    PlayerDetector detector;
     [SerializeField] GameObject pointsObject;
     Transform[] points;
     int index = 1;
@@ -16,7 +16,7 @@ public class MovingPad : MonoBehaviour
     private void Awake()
     {
         points = pointsObject.GetComponentsInChildren<Transform>();
-        playerDetector = movingPad.GetComponentInChildren<PlayerDetector>();
+        detector = movingPad.GetComponentInChildren<PlayerDetector>();
     }
 
     private void Start()
@@ -33,7 +33,7 @@ public class MovingPad : MonoBehaviour
 
         movingPad.position += speed * Time.fixedDeltaTime * moveDir;
 
-        if(playerDetector.IsIn)
+        if(detector.IsIn)
             player.MovePosition(player.position + speed * Time.fixedDeltaTime * moveDir);
     }
 
