@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Piston : MovingPad
 {
-    const float RECOVER_SPEED = 3f;
+    const float RECOVER_SPEED = 1f;
     const float EXCUTE_SPEED = 6f;
 
     [Header("Piston")]
@@ -25,39 +25,30 @@ public class Piston : MovingPad
     {
         if (detector.IsIn)
         {
-            if (excuted)
-            {
-                if (IsArrived())
-                {
-                    player.AddForce(movingPad.up * power, ForceMode.Impulse);
-                    return;
-                }
-
-                movingPad.position += EXCUTE_SPEED * Time.fixedDeltaTime * moveDir;
-                player.MovePosition(player.position + EXCUTE_SPEED * Time.fixedDeltaTime * moveDir);
-                return;
-            }
-
             if (IsArrived())
             {
+                if (excuted) 
+                {
+                    player.AddForce(movingPad.up * power, ForceMode.Impulse);
+                }
                 ChangeTargetPoint();
-                excuted = true;
-                return;
+                excuted = !excuted;
             }
-
-            movingPad.position += RECOVER_SPEED * Time.fixedDeltaTime * moveDir;
-            player.MovePosition(player.position + RECOVER_SPEED * Time.fixedDeltaTime * moveDir);
         }
         else
         {
             excuted = false;
-
-            if (IsArrived())
-            {
-                return;
-            }
-            
-            movingPad.position += RECOVER_SPEED * Time.fixedDeltaTime * moveDir;
         }
+
+        if(!IsArrived())
+            MoveHead(detector.IsIn);
+    }
+
+    private void MoveHead(bool hasPlayer)
+    {
+        float speed = excuted ? EXCUTE_SPEED : RECOVER_SPEED;
+
+        movingPad.position += speed * Time.fixedDeltaTime * moveDir;
+        if(hasPlayer) player.MovePosition(player.position + speed * Time.fixedDeltaTime * moveDir);
     }
 }
